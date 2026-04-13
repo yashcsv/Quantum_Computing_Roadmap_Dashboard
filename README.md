@@ -1,5 +1,4 @@
 # Quantum Computing Roadmap Dashboard
-LINK - https://yashcsv.github.io/Quantum_Computing_Roadmap_Dashboard/
 
 A production-style React dashboard that converts a dense quantum learning report into an interactive, decision-ready experience. The app combines narrative intelligence, KPI summaries, multi-section analytics, and polished motion design to help ML engineers evaluate and execute a transition into quantum computing.
 

@@ -34,6 +34,8 @@ const skills = [
 
 const ContactPage = () => {
   const navigate = useNavigate();
+  const profileImageSrc = `${import.meta.env.BASE_URL}yash-profile.jpg`;
+  const fallbackImageSrc = `${import.meta.env.BASE_URL}vite.svg`;
 
   return (
     <div className="min-h-screen bg-bg-base text-text-primary transition-colors duration-300">
@@ -80,11 +82,11 @@ const ContactPage = () => {
             <div className="glass-elevated rounded-xl p-5 lg:col-span-1">
               <div className="aspect-square rounded-xl overflow-hidden border border-border-default bg-bg-elevated mb-4">
                 <img
-                  src="/yash-profile.jpg"
+                  src={profileImageSrc}
                   alt="Yash Singh Thakur profile"
                   className="w-full h-full object-cover"
                   onError={(e) => {
-                    e.currentTarget.src = '/vite.svg';
+                    e.currentTarget.src = fallbackImageSrc;
                   }}
                 />
               </div>
