@@ -1,0 +1,191 @@
+@import '@fontsource/bebas-neue';
+@import '@fontsource/dm-mono';
+@import '@fontsource/dm-mono/400.css';
+@import '@fontsource/dm-mono/500.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* TECHNICAL Aesthetic — Dark Terminal */
+  --bg-base: #0A0C10;
+  --bg-surface: #12151C;
+  --bg-elevated: #1A1E28;
+  --bg-overlay: rgba(10, 12, 16, 0.85);
+
+  --text-primary: #E8ECF4;
+  --text-secondary: #9BA3B5;
+  --text-muted: #5E677A;
+  --text-disabled: #3A4050;
+
+  --accent-primary: #00FF9F;
+  --accent-secondary: #00CC7F;
+  --accent-tertiary: #007A4D;
+
+  --semantic-positive: #00FF9F;
+  --semantic-negative: #FF4757;
+  --semantic-warning: #FFBE0B;
+  --semantic-neutral: #47BFFF;
+
+  --border-default: rgba(232, 236, 244, 0.08);
+  --border-subtle: rgba(232, 236, 244, 0.05);
+  --border-strong: rgba(232, 236, 244, 0.15);
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.6);
+  --shadow-glow: 0 0 30px rgba(0, 255, 159, 0.15);
+}
+
+/* Light mode */
+.light {
+  --bg-base: #F4F6FA;
+  --bg-surface: #FFFFFF;
+  --bg-elevated: #EBEEF5;
+  --bg-overlay: rgba(244, 246, 250, 0.85);
+
+  --text-primary: #0A0C10;
+  --text-secondary: #4A5568;
+  --text-muted: #8A95A8;
+  --text-disabled: #C4CCD8;
+
+  --accent-primary: #00AA6B;
+  --accent-secondary: #00885A;
+  --accent-tertiary: #D4FFF0;
+
+  --semantic-positive: #00AA6B;
+  --semantic-negative: #E03E4E;
+  --semantic-warning: #D19B00;
+  --semantic-neutral: #2B8FD9;
+
+  --border-default: rgba(10, 12, 16, 0.1);
+  --border-subtle: rgba(10, 12, 16, 0.05);
+  --border-strong: rgba(10, 12, 16, 0.18);
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.12);
+  --shadow-glow: 0 0 30px rgba(0, 170, 107, 0.12);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: 'DM Mono', monospace;
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Noise texture overlay */
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-base);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-primary);
+}
+
+/* Tabular nums for all data */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Focus styles */
+*:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+}
+
+/* Selection */
+::selection {
+  background: rgba(0, 255, 159, 0.25);
+  color: var(--text-primary);
+}
+
+/* Print styles */
+@media print {
+  body {
+    background: white;
+    color: black;
+  }
+  .no-print, 
+  nav, 
+  .scroll-progress,
+  .back-to-top {
+    display: none !important;
+  }
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Custom utility classes */
+@layer utilities {
+  .text-gradient {
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .glass {
+    background: var(--bg-surface);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--border-default);
+  }
+
+  .glass-elevated {
+    background: var(--bg-elevated);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--border-default);
+  }
+}
